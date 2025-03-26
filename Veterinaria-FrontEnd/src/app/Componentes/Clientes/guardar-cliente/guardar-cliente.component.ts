@@ -22,10 +22,11 @@ export class GuardarClienteComponent implements OnInit {
 
   //VARIABLES Y ARREGLOS
   cliente: Clientes = new Clientes;
-
+  mensajeError: string = '';
 
   //METODOS
   guardarCliente(){
+    this.mensajeError=''; //Limpiar buffer
     this.service.guardarCliente(this.cliente).subscribe({
       next: data=>{
         Swal.fire({
@@ -38,10 +39,12 @@ export class GuardarClienteComponent implements OnInit {
         this.router.navigate(['listarClientes']);
       }, error: err=>{
         console.error(JSON.stringify(err));
+        this.mensajeError = `Ocurrió un error al guardar el cliente.<br><br>ERROR: ${err.error}`;
+
           Swal.fire({
             title: "ERROR!",
             icon: "error",
-            text: "Ocurrió un error al guardar el cliente ",
+            html: this.mensajeError,
             confirmButtonText: "Continuar"
           });
 

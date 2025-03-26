@@ -7,4 +7,8 @@ import com.mx.VetClientes.Entity.Clientes;
 public interface IClientesDao extends JpaRepository<Clientes, Integer> {
 
 	public Clientes findByIdCliente(int idCliente);
+	
+	public Clientes findByNombreIgnoreCase(String nombre);
+	
+	public Clientes findByDireccionIgnoreCase(String direccion);
 }

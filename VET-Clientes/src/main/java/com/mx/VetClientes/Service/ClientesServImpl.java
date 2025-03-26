@@ -18,6 +18,13 @@ public class ClientesServImpl implements IClientesService {
 	
 	@Override
 	public Clientes guardar(Clientes cliente) {
+		Clientes clienteExist = dao.findByNombreIgnoreCase(cliente.getNombre());
+		Clientes direccionExist = dao.findByDireccionIgnoreCase(cliente.getDireccion());
+		
+		
+		if (clienteExist != null && direccionExist!=null) {
+	        throw new RuntimeException("El cliente con el nombre '" + cliente.getNombre() +"' y la dirección '"+ cliente.getDireccion() + "' ya existe.");
+	    }
 		return dao.save(cliente);
 	}
 

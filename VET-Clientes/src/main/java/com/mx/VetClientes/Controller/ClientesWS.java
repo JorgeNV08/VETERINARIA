@@ -20,7 +20,7 @@ import com.mx.VetClientes.Service.ClientesServImpl;
 
 @RestController
 @RequestMapping("/Clientes")  //http://localhost:8200/Clientes
-public class ClientesWS {
+public class ClientesWS { 
 
 	@Autowired
 	ClientesServImpl service;
@@ -36,11 +36,16 @@ public class ClientesWS {
 	
 	@PostMapping
 	public ResponseEntity<?> guardar(@RequestBody Clientes cliente){
-		Clientes nuevoCliente = service.guardar(cliente);
-		if(nuevoCliente!=null)
+		try {
+			Clientes nuevoCliente = service.guardar(cliente);
 			return ResponseEntity.status(HttpStatus.OK).body(nuevoCliente);
-		return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+			
+		} catch(RuntimeException e) {
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+		} 
 	}
+		
+		
 	
 	@PutMapping
 	public ResponseEntity<?> editar(@RequestBody Clientes cliente){
