@@ -1,0 +1,26 @@
+{
+  "name": "veterinaria",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JorgeNV08/VETERINARIA.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/JorgeNV08/VETERINARIA/issues"
+  },
+  "homepage": "https://github.com/JorgeNV08/VETERINARIA#readme",
+  "description": "",
+  "dependencies": {
+    "@angular/common": "^19.2.3",
+    "@popperjs/core": "^2.11.8",
+    "animate.css": "^4.1.1",
+    "bootstrap": "^5.3.3",
+    "sweetalert2": "^11.17.2"
+  }
+}
