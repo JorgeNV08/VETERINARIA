@@ -1,0 +1,34 @@
+<div class="content">
+    <div class="container">
+        <div class="card mt-5">
+            <div class="card-header">
+                <h4>Editar Responsable</h4>
+                <div class="card-body">
+                    <form>
+                        <div>
+                            <label for="idResponsable">ID RESPONSABLE</label>
+                            <input type="number" class="form-control" name="idResponsable" id="idResponsable" [(ngModel)]="responsable.idResponsable" disabled>
+                        </div>
+                        
+                        <div>
+                            <label for="nombre">NOMBRE</label>
+                            <input type="text" class="form-control" name="nombre" [(ngModel)]="responsable.nombre">
+                        </div>
+
+                        <div>
+                            <label for="contacto">CONTACTO</label>
+                            <input type="number" class="form-control" name="contacto" id="contacto" [(ngModel)]="responsable.contacto">
+                        </div>
+                        <div>
+                            <label for="veterinariaId">VETERINARIA ID</label>
+                            <input type="number" class="form-control" name="veterinariaId" id="veterinariaId" [(ngModel)]="responsable.veterinariaId">
+                        </div>
+
+                        <button class="btn btn-success" (click)="editarResponsable()">EDITAR</button>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

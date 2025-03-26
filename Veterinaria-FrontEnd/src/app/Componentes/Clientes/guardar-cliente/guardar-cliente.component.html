@@ -1,0 +1,34 @@
+<div class="content">
+    <div class="container">
+        <div class="card mt-5">
+            <div class="card-header">
+                <h4>Nuevo Cliente</h4>
+                <div class="card-body">
+                    <form>
+                        <div>
+                            <label for="idCliente">ID</label>
+                            <input type="number" class="form-control" name="idCliente" id="idCliente" [(ngModel)]="cliente.idCliente">
+                        </div>
+                        
+                        <div>
+                            <label for="nombre">NOMBRE</label>
+                            <input type="text" class="form-control" name="nombre" [(ngModel)]="cliente.nombre">
+                        </div>
+
+                        <div>
+                            <label for="direccion">DIRECCION</label>
+                            <input type="text" class="form-control" name="direccion" [(ngModel)]="cliente.direccion">
+                        </div>
+                        <div>
+                            <label for="contacto">CONTACTO</label>
+                            <input type="number" class="form-control" name="contacto" id="contacto" [(ngModel)]="cliente.contacto">
+                        </div>
+
+                        <button class="btn btn-success" (click)="guardarCliente()">GUARDAR</button>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

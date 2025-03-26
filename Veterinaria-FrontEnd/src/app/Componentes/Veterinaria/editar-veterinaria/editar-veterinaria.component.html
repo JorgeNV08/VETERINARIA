@@ -1,0 +1,34 @@
+<div class="content">
+    <div class="container">
+        <div class="card mt-5">
+            <div class="card-header">
+                <h4> Editar Veterinaria</h4>
+                    <div class="card-body">
+                        <form>
+                            <div>
+                                <label for="idVeterinaria"> ID </label>
+                                <input type="number" class="form-control" name="idVeterinaria" id="idVeterinaria" [(ngModel)]="veterinaria.idVeterinaria" disabled>
+                            </div>
+                                
+                            <div>
+                                <label for="nombre"> NOMBRE </label>
+                                <input type="text" class="form-control" name="nombre" [(ngModel)]="veterinaria.nombre">
+                            </div>
+
+                            <div>
+                                <label for="direccion"> DIRECCIÓN </label>
+                                <input type="text" class="form-control" name="direccion" [(ngModel)]="veterinaria.direccion">
+                            </div>
+
+                            <div>
+                                <label for="telefono"> TELÉFONO </label>
+                                <input type="number" class="form-control" name="telefono" [(ngModel)]="veterinaria.telefono">
+                            </div>
+                            
+                            <button class="btn btn-success mt-2" (click)="editar()">EDITAR</button>
+                        </form>
+                    </div>
+            </div>
+        </div>
+    </div>
+</div>

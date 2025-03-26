@@ -1,0 +1,47 @@
+<main class="main">
+  <nav class="navbar navbar-expand-lg w-100" style="background-color: #e3f2fd;">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">Veterinarias</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav"> 
+          <li class="nav-item">
+            <a class="btn me-2" style="background-color: #e0bbe4; color: #6a3d3e;" aria-current="page" href="/listarVeterinarias">Veterinarias </a>
+          </li>
+          <li class="nav-item">
+            <a class="btn me-2" style="background-color: #e0bbe4; color: #6a3d3e;"href="/guardarVeterinaria">Nueva Veterinaria</a>
+          </li>
+
+          <li class="nav-item">
+            <a href="/listarClientes" class="btn me-2" style="background-color: #f8c8d3; color: #6a4e4d;">Clientes</a>
+          </li>
+          <li class="nav-item">
+            <a href="/guardarCliente" class="btn me-2" style="background-color: #f8c8d3; color: #6a4e4d;">Nuevo Cliente</a>
+          </li>
+
+          <li class="nav-item">
+            <a href="/listarMascotas" class="btn me-2" style="background-color: #A7C7E7; color: #2C3E50;">Mascotas</a>
+          </li>
+          <li class="nav-item">
+            <a href="/guardarMascota" class="btn me-2" style="background-color: #A7C7E7; color: #2C3E50;">Nueva Mascota</a>
+          </li>
+
+          <li class="nav-item">
+            <a href="/listarResponsables" class="btn me-2" style="background-color: #A8E6A3; color: #2C3E50;">Responsables</a>
+          </li>
+          <li class="nav-item">
+            <a href="guardarResponsable" class="btn me-2" style="background-color: #A8E6A3; color: #2C3E50;">Nuevo Responsable</a>
+          </li>
+
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+</main>
+
+
+
+<router-outlet />

@@ -1,0 +1,43 @@
+<div class="div content">
+    <div class="container">
+        <div class="card">
+            <div class="card-header">
+                <div class="d-flex justify-content-between">
+                    <h4 class="text-center">Lista de Clientes </h4>
+                </div>
+            </div>
+            <div class="card-body">
+                <table class="table table-hover">
+                    <thead class="table-info">
+                        <tr>
+                            <th>ID CLIENTE</th>
+                            <th>NOMBRE</th>
+                            <th>DIRECCIÓN</th>
+                            <th>CONTACTO</th>
+                            <th style="text-align: center;">ACCIÓN</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @for (cliente of clientes; track cliente.idCliente) {
+                        <tr>
+                            <td>{{ cliente.idCliente }}</td>
+                            <td>{{ cliente.nombre }}</td>
+                            <td>{{ cliente.direccion }}</td>
+                            <td>{{ cliente.contacto }}</td>
+                            <td>
+                                <button class="btn btn-warning me-2" (click)="editarCliente(cliente)">EDITAR</button>
+                                <button class="btn btn-danger" (click)="eliminarCliente(cliente.idCliente)">ELIMINAR</button>
+                            </td>
+                        </tr>
+                    } @empty {
+                        <tr>
+                            <td colspan="5" style="text-align: center;"> NO EXISTEN DATOS PARA MOSTRAR, AGREGUE NUEVOS DATOS</td>
+                        </tr>
+                    }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+

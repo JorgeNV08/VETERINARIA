@@ -1,0 +1,43 @@
+<div class="div content">
+    <div class="container">
+        <div class="card">
+            <div class="card-header">
+                <div class="d-flex justify-content-between">
+                    <h4 class="text-center">Lista de Responsables</h4>
+                </div>
+            </div>
+            <div class="card-body">
+                <table class="table table-hover">
+                    <thead class="table-info">
+                        <tr>
+                            <th>ID RESPONSABLE</th>
+                            <th>NOMBRE</th>
+                            <th>CONTACTO</th>
+                            <th>VETERINARIA</th>
+                            <th style="text-align: center;">ACCIÓN</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @for (responsable of responsables; track responsable.idResponsable) {
+                        <tr>
+                            <td>{{ responsable.idResponsable }}</td>
+                            <td>{{ responsable.nombre }}</td>
+                            <td>{{ responsable.contacto }}</td>
+                            <td>{{ responsable.nombreVeterinaria }}</td>
+                            <td>
+                                <button class="btn btn-warning me-2" (click)="editarResponsable(responsable)">EDITAR</button>
+                                <button class="btn btn-danger" (click)="eliminarResponsable(responsable.idResponsable)">ELIMINAR</button>
+                            </td>
+                        </tr>
+                    } @empty {
+                        <tr>
+                            <td colspan="9" style="text-align: center;"> NO EXISTEN DATOS PARA MOSTRAR, AGREGUE NUEVOS DATOS</td>
+                        </tr>
+                    }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+

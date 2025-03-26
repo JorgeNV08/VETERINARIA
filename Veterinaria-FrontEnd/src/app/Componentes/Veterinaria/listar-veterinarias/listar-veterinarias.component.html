@@ -1,0 +1,42 @@
+<div class="div content">
+    <div class="container">
+        <div class="card">
+            <div class="card-header">
+                <div class="d-flex justify-content-between">
+                    <h4 class="text-center">Lista de Veterinarias</h4>
+                </div>
+            </div>
+            <div class="card-body">
+                <table class="table table-hover">
+                    <thead class="table-info">
+                        <tr>
+                            <th>ID VETERINARIA</th>
+                            <th>NOMBRE</th>
+                            <th>DIRECCIÓN</th>
+                            <th>TELEFONO</th>
+                            <th style="text-align: center;">ACCIÓN</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @for (veterinaria of veterinarias; track veterinaria.idVeterinaria) {
+                        <tr>
+                            <td>{{ veterinaria.idVeterinaria }}</td>
+                            <td>{{ veterinaria.nombre }}</td>
+                            <td>{{ veterinaria.direccion }}</td>
+                            <td>{{ veterinaria.telefono }}</td>
+                            <td>
+                                <button class="btn btn-warning me-2" (click)="editarVeterinaria(veterinaria)">EDITAR</button>
+                                <button class="btn btn-danger" (click)="eliminarVeterinaria(veterinaria.idVeterinaria)">ELIMINAR</button>
+                            </td>
+                        </tr>
+                    } @empty {
+                        <tr>
+                            <td colspan="5" style="text-align: center;"> NO EXISTEN DATOS PARA MOSTRAR, AGREGUE NUEVOS DATOS</td>
+                        </tr>
+                    }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,50 @@
+<div class="content">
+    <div class="container">
+        <div class="card mt-5">
+            <div class="card-header">
+                <h4>Nueva Mascota</h4>
+                <div class="card-body">
+                    <form>
+                        <div>
+                            <label for="idMascota">ID</label>
+                            <input type="number" class="form-control" name="idMascota" id="idMascota" [(ngModel)]="mascota.idMascota">
+                        </div>
+                        
+                        <div>
+                            <label for="nombre">NOMBRE</label>
+                            <input type="text" class="form-control" name="nombre" [(ngModel)]="mascota.nombre">
+                        </div>
+
+                        <div>
+                            <label for="raza">RAZA</label>
+                            <input type="text" class="form-control" name="raza" [(ngModel)]="mascota.raza">
+                        </div>
+                        <div>
+                            <label for="edad">EDAD</label>
+                            <input type="number" class="form-control" name="edad" id="edad" [(ngModel)]="mascota.edad">
+                        </div>
+                        <div>
+                            <label for="razonCita">RAZÓN DE LA CITA</label>
+                            <input type="text" class="form-control" name="razonCita" [(ngModel)]="mascota.razonCita">
+                        </div>
+                        <div>
+                            <label for="clienteId">ID CLIENTE</label>
+                            <input type="number" class="form-control" name="clienteId" id="clienteId" [(ngModel)]="mascota.clienteId">
+                        </div>
+                        <div>
+                            <label for="responsableId">ID RESPONSABLE</label>
+                            <input type="number" class="form-control" name="responsableId" id="responsableId" [(ngModel)]="mascota.responsableId">
+                        </div>
+                        <div>
+                            <label for="veterinariaId">ID VETERINARIA</label>
+                            <input type="number" class="form-control" name="veterinariaId" id="veterinariaId" [(ngModel)]="mascota.veterinariaId">
+                        </div>
+
+                        <button class="btn btn-success" (click)="guardarMascota()">MASCOTA</button>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
