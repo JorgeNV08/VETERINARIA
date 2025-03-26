@@ -15,4 +15,6 @@ public class Veterinaria {
 	private String nombre;
 	private String direccion;
 	private Long telefono;
+	
+	//comentario de prueba2
 }

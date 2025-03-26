@@ -12,4 +12,5 @@ public class VetApiGateway2Application {
 		SpringApplication.run(VetApiGateway2Application.class, args);
 	}
 
+	//Comentario de prueba
 }
