@@ -1,0 +1,81 @@
+server.port=8000
+spring.application.name=API-Gateway-2
+spring.main.allow-bean-definition-overriding=true
+
+#CONFIGURACION DE EUREKA CLIENT
+eureka.client.register-with-eureka=true
+eureka.client.fetch-registry=true
+eureka.instance.hostname=localhost
+eureka.client.service-url.defaultZone=http://localhost:9000/eureka
+
+#*********************************************************************
+#	SEGURIDAD CON "SPRING SECURITY"
+#
+#	USUARIO : 
+spring.security.user.name=jorge
+#	CONTRASEÑA : 
+spring.security.user.password=54321
+#	ROL
+spring.security.user.roles=ADMIN
+
+#CONFIGURACION DE LOS MICROSERVICIOS QUE CONTRLARÁ API GATEWAY
+
+#Microservicio CLIENTES
+#http://localhost:8013/Clientes
+#spring.cloud.gateway.routes[0].id=CLIENTES
+#spring.cloud.gateway.routes[0].uri=http://localhost:8013
+#spring.cloud.gateway.routes[0].predicates[0]=Path=/Clientes/**
+
+#Microservicio PRODUCTOS
+#http://localhost:8010/Producto
+##spring.cloud.gateway.routes[1].id=PRODUCTO
+#spring.cloud.gateway.routes[1].uri=http://localhost:8010
+#spring.cloud.gateway.routes[1].predicates[0]=Path=/Producto/**
+
+#Microservicio PROVEEDORES
+#http://localhost:8011/Proveedor
+#spring.cloud.gateway.routes[2].id=PROVEEDORES
+#spring.cloud.gateway.routes[2].uri=http://localhost:8011
+#spring.cloud.gateway.routes[2].predicates[0]=Path=/Proveedor/**
+
+#Microservicio GESTION TIENDA
+#http://localhost:8014/Tienda
+#spring.cloud.gateway.routes[3].id=GESTION-TIENDA
+#spring.cloud.gateway.routes[3].uri=http://localhost:8014
+#spring.cloud.gateway.routes[3].predicates[0]=Path=/Tienda/**
+
+#Microservicio GESTION TIENDA
+#http://localhost:8014/Tienda
+##spring.cloud.gateway.routes[4].id=AUTOMOVIL
+#spring.cloud.gateway.routes[4].uri=http://localhost:8003
+#spring.cloud.gateway.routes[4].predicates[0]=Path=/Automovil/**
+
+#CONFIGURACION DE LOS MICROSERVICIOS QUE CONTRLARÁ API GATEWAY
+#Microservicio Clientes
+# http://localhost:8200/Clientes
+spring.cloud.gateway.routes[0].id=CLIENTES
+spring.cloud.gateway.routes[0].uri=http://localhost:8200
+spring.cloud.gateway.routes[0].predicates[0]=Path=/Clientes/**
+
+#Microservicio Mascotas
+# http://localhost:8203/Mascotas
+spring.cloud.gateway.routes[1].id=MASCOTAS
+spring.cloud.gateway.routes[1].uri=http://localhost:8203
+spring.cloud.gateway.routes[1].predicates[0]=Path=/Mascotas/**
+
+#Microservicio Responsables
+# http://localhost:8202/Responsable
+spring.cloud.gateway.routes[2].id=RESPONSABLES
+spring.cloud.gateway.routes[2].uri=http://localhost:8202
+spring.cloud.gateway.routes[2].predicates[0]=Path=/Responsable/**
+
+#Microservicio Veterinaria
+# http://localhost:8201/Veterinaria
+spring.cloud.gateway.routes[3].id=VETERINARIA
+spring.cloud.gateway.routes[3].uri=http://localhost:8201
+spring.cloud.gateway.routes[3].predicates[0]=Path=/Veterinaria/**
+
+
+# Ajustar tiempos de heartbeat para evitar problemas de registro
+eureka.instance.lease-renewal-interval-in-seconds=10
+eureka.instance.lease-expiration-duration-in-seconds=30

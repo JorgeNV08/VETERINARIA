@@ -1,0 +1,5 @@
+package com.mx.VetClientes.Dao;
+
+public interface IClientesDao {
+
+}

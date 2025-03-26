@@ -1,0 +1,49 @@
+package com.mx.Responsables.Service;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.mx.Responsables.Dao.IResponsablesDao;
+import com.mx.Responsables.Entity.Responsables;
+
+@RestController
+public class ResponsablesServImp implements IResponsablesServ{
+	
+	@Autowired
+	IResponsablesDao dao;
+
+	@Override
+	public List<Responsables> listar() {
+		return dao.findAll();
+	}
+
+	@Override
+	public Responsables buscar(int idResponsable) {
+		return dao.findById(idResponsable).orElse(null);
+	}
+
+	@Override
+	public Responsables guardar(Responsables responsable) {
+		return dao.save(responsable);
+	}
+
+	@Override
+	public Responsables editar(Responsables responsable) {
+		Responsables aux = this.buscar(responsable.getIdResponsable());
+		if(aux!=null)
+			return dao.save(aux);
+		return null;
+	}
+
+	@Override
+	public Responsables eliminar(int idResponsable) {
+		Responsables aux = this.buscar(idResponsable);
+		if(aux!=null)
+			dao.deleteById(idResponsable);
+			return aux;
+		return null;
+	}
+
+}

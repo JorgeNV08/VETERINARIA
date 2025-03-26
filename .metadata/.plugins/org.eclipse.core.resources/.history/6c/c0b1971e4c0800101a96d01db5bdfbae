@@ -1,0 +1,46 @@
+package com.mx.Responsables.Service;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.mx.Responsables.Dao.IResponsablesDao;
+import com.mx.Responsables.Entity.Responsables;
+
+@RestController
+public class ResponsablesServImp implements IResponsablesServ{
+	
+	@Autowired
+	IResponsablesDao dao;
+
+	@Override
+	public List<Responsables> listar() {
+		return null;
+	}
+
+	@Override
+	public Responsables buscar(int idResponsable) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Responsables guardar(Responsables responsable) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Responsables editar(Responsables responsable) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Responsables eliminar(int idResponsable) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

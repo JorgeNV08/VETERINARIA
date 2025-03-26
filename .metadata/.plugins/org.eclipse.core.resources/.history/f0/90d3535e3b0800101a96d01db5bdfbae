@@ -1,0 +1,5 @@
+package com.mx.VetClientes.Controller;
+
+public class ClientesWS {
+
+}

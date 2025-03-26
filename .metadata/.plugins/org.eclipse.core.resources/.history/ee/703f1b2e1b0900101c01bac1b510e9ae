@@ -1,0 +1,43 @@
+package com.mx.ApiGateway.Config;
+
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.http.SessionCreationPolicy;
+import org.springframework.security.web.SecurityFilterChain;
+
+@Configuration
+@EnableWebSecurity
+public class SecurityConfig {
+	//Método utilizado para trabajar con los filtros de seguridad de Spring Security "SecurityFilterChain"
+		/*@Bean
+		SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+			http.csrf(csrf-> csrf.disable())
+				.authorizeHttpRequests( //URLs permitidos
+						
+							authorize -> authorize
+								.requestMatchers("/Veterinaria/Clientes/**").authenticated()
+								.requestMatchers("/Veterinaria/Mascotas/**").authenticated()
+								.requeSecurityConfig.javastMatchers("/Veterinaria/Responsable/**").authenticated()
+								.anyRequest().denyAll())
+				.formLogin().and()
+				.httpBasic();
+				
+			return http.build();
+		}
+		*/
+	
+	@Bean
+    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+        http
+            .csrf(csrf -> csrf.disable()) // Deshabilita CSRF
+            .cors() // Habilita CORS
+            .and()
+            .authorizeHttpRequests(auth -> auth
+                .anyRequest().permitAll()) // Permite todas las solicitudes
+            .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS)); // Sin sesiones
+
+        return http.build();
+	}
+}

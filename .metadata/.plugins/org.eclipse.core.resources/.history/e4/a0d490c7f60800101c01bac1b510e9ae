@@ -1,0 +1,22 @@
+package com.mx.Veterinaria.FeignClients;
+
+import java.util.List;
+
+import org.springframework.cloud.openfeign.FeignClient;
+import org.springframework.web.bind.annotation.GetMapping;
+
+import com.mx.Veterinaria.Models.Responsables;
+
+@FeignClient(
+		name = "VET-Responsables",
+		url = "http://localhost:8202",
+		path = "/Responsable"
+		)
+
+
+public interface IResponsablesFeign {
+
+	//Declaramos los metodos de Responsables
+	@GetMapping
+	public List<Responsables> listarResponsables();
+}

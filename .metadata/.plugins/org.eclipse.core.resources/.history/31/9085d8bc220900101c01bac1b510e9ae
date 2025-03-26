@@ -1,0 +1,5 @@
+package com.mx.SalaCine.Config;
+
+public class MvcConfig {
+
+}

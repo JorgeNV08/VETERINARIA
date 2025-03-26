@@ -1,0 +1,5 @@
+package com.mx.VetClientes.Service;
+
+public interface IClientesService {
+
+}

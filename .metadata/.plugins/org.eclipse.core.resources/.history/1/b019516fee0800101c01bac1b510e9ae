@@ -1,0 +1,12 @@
+package com.mx.Veterinaria.FeignClients;
+
+import java.util.List;
+
+import com.mx.Veterinaria.Models.Responsables;
+
+public interface IResponsablesFeign {
+
+	//Declaramos los metodos de Responsables
+	
+	public List<Responsables> listarResponsables();
+}

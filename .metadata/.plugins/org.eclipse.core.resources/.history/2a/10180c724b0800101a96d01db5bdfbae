@@ -1,0 +1,5 @@
+package com.mx.Responsables.Dao;
+
+public interface IResponsablesDao {
+
+}

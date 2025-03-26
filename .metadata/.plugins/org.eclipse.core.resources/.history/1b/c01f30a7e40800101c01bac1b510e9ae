@@ -1,0 +1,39 @@
+package com.mx.Mascotas.Controller;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.mx.Mascotas.Entity.Mascotas;
+import com.mx.Mascotas.Service.MascotasServImpl;
+
+@RestController
+@RequestMapping("/Mascotas") //http://localhost:8203/Mascotas
+public class MascotasWS {
+
+	@Autowired
+	MascotasServImpl service;
+	
+	@GetMapping
+	public ResponseEntity<?> listar(){
+		List<Mascotas> mascotas = service.listar();
+		if(mascotas.isEmpty())
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+		return ResponseEntity.status(HttpStatus.OK).body(mascotas);
+	}
+	
+	@GetMapping("/{idMascota}")
+	public ResponseEntity<?> buscar(@PathVariable int idMascota){
+		Mascotas mascota = service.buscar(idMascota);
+		if(mascota!=null)
+			return ResponseEntity.status(HttpStatus.OK).body(mascota);
+		return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+		
+	}
+}

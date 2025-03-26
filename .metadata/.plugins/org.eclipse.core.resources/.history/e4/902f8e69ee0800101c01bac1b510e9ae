@@ -1,0 +1,19 @@
+package com.mx.Veterinaria.FeignClients;
+
+import java.util.List;
+
+import org.springframework.cloud.openfeign.FeignClient;
+
+import com.mx.Veterinaria.Models.Mascotas;
+
+@FeignClient(
+		name = "VET-Mascotas",
+		url = "http://localhost:8203",
+		path = "/Mascotas"
+		)
+
+public interface IMascotasFeign {
+
+	//Declaración de los metodos
+	public List<Mascotas> listarMascotas();
+}

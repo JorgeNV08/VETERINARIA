@@ -1,0 +1,26 @@
+# CONFIGURACION DEL SERVIDOR
+# El puerto por defecto de una aplicación es el puerto: 8080
+server.port = 8200
+spring.application.name=VET-Clientes
+
+#CONFIGURACION DE LA BASE DE DATOS
+spring.datasource.url=jdbc:oracle:thin:@localhost:1521/xe
+spring.datasource.username=CURSO_25
+spring.datasource.password=CURSO_25
+spring.datasource.driver-class-name=oracle.jdbc.OracleDriver
+
+#CONFIGURACION DE JPA
+spring.jpa.database=ORACLE
+spring.jpa.database-platform=org.hibernate.dialect.OracleDialect
+spring.jpa.properties.hibernate.format-sql=TRUE
+
+#CONFIGURACION DE EUREKA CLIENT PARA REGISTRARLO EN EUREKA SERVER
+eureka.instance.hostname=localhost
+eureka.client.service-url.defaultZone=http://localhost:9000/eureka
+
+logging.level.org.hibernate.sql=debug
+logging.level.org.hibernate.type.descriptor.sql.BasicBinder=trace
+
+#CONFIGURACION DE HORA Y FECHA PARA LOS FORMATOS JSON
+spring.jackson.date-format=dd/MM/yyyy;
+spring.jackson.time-zone=America/Mexico_City

@@ -1,0 +1,52 @@
+package com.mx.Mascotas.Service;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.domain.Sort.Direction;
+import org.springframework.stereotype.Service;
+
+import com.mx.Mascotas.Dao.IMascotasDao;
+import com.mx.Mascotas.Entity.Mascotas;
+
+@Service
+public class MascotasServImpl implements IMascotasServ{
+
+	@Autowired
+	IMascotasDao dao;
+	
+	@Override
+	public List<Mascotas> listar() {
+		return dao.findAll(Sort.by(Direction.ASC,"idMascota"));
+	}
+
+	@Override
+	public Mascotas buscar(int idMascota) {
+		return dao.findById(idMascota).orElse(null);
+	}
+
+	@Override
+	public Mascotas guardar(Mascotas mascota) {
+		return dao.save(mascota);
+	}
+
+	@Override
+	public Mascotas editar(Mascotas mascota) {
+		Mascotas aux = this.buscar(mascota.getIdMascota());
+		if(aux!=null)
+			return dao.save(mascota);
+		return null;
+	}
+
+	@Override
+	public Mascotas eliminar(int idMascota) {
+		Mascotas aux = this.buscar(idMascota);
+		if(aux!=null) {
+			dao.deleteById(idMascota);
+			return aux;
+		}
+		return null;
+	}
+
+}

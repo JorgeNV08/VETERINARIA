@@ -1,0 +1,5 @@
+package com.mx.Veterinaria.FeignClients;
+
+public interface IResponsablesFeign {
+
+}

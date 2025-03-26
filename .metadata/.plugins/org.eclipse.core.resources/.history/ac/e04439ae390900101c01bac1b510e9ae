@@ -1,0 +1,13 @@
+package com.mx.ApiGateway;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+@SpringBootApplication
+public class VetApiGateway2Application {
+
+	public static void main(String[] args) {
+		SpringApplication.run(VetApiGateway2Application.class, args);
+	}
+
+}

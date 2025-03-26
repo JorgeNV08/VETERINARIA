@@ -1,0 +1,19 @@
+package com.mx.APIGateway2.Config;
+
+import org.springframework.context.annotation.Configuration;
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+import org.springframework.web.util.pattern.PathPattern;
+
+@Configuration
+public class MvcConfig implements WebMvcConfigurer {
+
+	@Override
+	public void addCorsMappings(CorsRegistry registry) {
+		registry.addMapping(pathPattern: "/Veterinaria/**")
+				.allowedOrigins("http://localhost:4200")
+				.allowedMethods("GET", "POST", "PUT", "DELETE", "HEAD", "OPTIONS")
+				.allowCredentials(true);
+		
+	}
+}

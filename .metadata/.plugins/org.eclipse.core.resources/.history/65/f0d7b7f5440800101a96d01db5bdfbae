@@ -1,0 +1,46 @@
+package com.mx.Veterinaria.Service;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.mx.Veterinaria.Dao.IVeterinariaDao;
+import com.mx.Veterinaria.Entity.Veterinaria;
+
+@Service
+public class VeterinariaServImpl implements IVeterinariaServ {
+
+	@Autowired
+	IVeterinariaDao dao;
+	
+	@Override
+	public List<Veterinaria> listar() {
+		return null;
+	}
+
+	@Override
+	public Veterinaria buscar(int idVeterinaria) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Veterinaria guardar(Veterinaria veterinaria) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Veterinaria editar(Veterinaria veterinaria) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Veterinaria eliminar(int idVeterinaria) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

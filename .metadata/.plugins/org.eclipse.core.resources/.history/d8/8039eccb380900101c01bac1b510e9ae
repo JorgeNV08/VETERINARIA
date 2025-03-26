@@ -1,0 +1,33 @@
+package com.mx.ApiGateway.config;
+
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.web.SecurityFilterChain;
+
+@Configuration
+@EnableWebSecurity
+public class SecurityConfig {
+
+    @Bean
+    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+        http
+            .cors().and()
+            .authorizeRequests()
+                // Configura los métodos HTTP para cada ruta
+                .requestMatchers(HttpMethod.GET, "/Clientes/**", "/Mascotas/**", "/Responsable/**", "/Veterinaria/**").hasRole("ADMIN")
+                .requestMatchers(HttpMethod.POST, "/Clientes/**", "/Mascotas/**", "/Responsable/**", "/Veterinaria/**").hasRole("ADMIN")
+                .requestMatchers(HttpMethod.PUT, "/Clientes/**", "/Mascotas/**", "/Responsable/**", "/Veterinaria/**").hasRole("ADMIN")
+                .requestMatchers(HttpMethod.DELETE, "/Clientes/**", "/Mascotas/**", "/Responsable/**", "/Veterinaria/**").hasRole("ADMIN")
+                .anyRequest().authenticated()
+            .and()
+            .httpBasic()
+            .and()
+            .csrf().disable(); // Desactiva CSRF si no es necesario
+
+        return http.build();
+    }
+}

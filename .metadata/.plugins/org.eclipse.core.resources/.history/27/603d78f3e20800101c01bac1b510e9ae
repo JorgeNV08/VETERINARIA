@@ -1,0 +1,47 @@
+package com.mx.Mascotas.Service;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.mx.Mascotas.Dao.IMascotasDao;
+import com.mx.Mascotas.Entity.Mascotas;
+
+@Service
+public class MascotasServImpl implements IMascotasServ{
+
+	@Autowired
+	IMascotasDao dao;
+	
+	@Override
+	public List<Mascotas> listar() {
+		return dao.findAll();
+	}
+
+	@Override
+	public Mascotas buscar(int idMascota) {
+		return dao.findById(idMascota).orElse(null);
+	}
+
+	@Override
+	public Mascotas guardar(Mascotas mascota) {
+		Mascotas aux = this.buscar(mascota.getIdMascota());
+		if(aux!=null)
+			return dao.save(mascota);
+		return null;
+	}
+
+	@Override
+	public Mascotas editar(Mascotas mascota) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Mascotas eliminar(int idMascota) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

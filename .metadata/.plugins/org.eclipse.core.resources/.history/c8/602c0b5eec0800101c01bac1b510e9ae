@@ -1,0 +1,13 @@
+package com.mx.Veterinaria.FeignClients;
+
+import org.springframework.cloud.openfeign.FeignClient;
+
+@FeignClient(
+		name = "VET-Mascotas",
+		url = "http://localhost:8203",
+		path = "/Mascotas"
+		)
+
+public interface IMascotasFeign {
+
+}

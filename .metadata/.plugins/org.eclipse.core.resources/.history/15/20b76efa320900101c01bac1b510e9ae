@@ -1,0 +1,5 @@
+package com.mx.APIGateway2.Config;
+
+public class MvcConfig {
+
+}
