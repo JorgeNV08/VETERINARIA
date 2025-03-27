@@ -18,11 +18,10 @@ public class ClientesServImpl implements IClientesService {
 	
 	@Override
 	public Clientes guardar(Clientes cliente) {
-		Clientes clienteExist = dao.findByNombreIgnoreCase(cliente.getNombre());
-		Clientes direccionExist = dao.findByDireccionIgnoreCase(cliente.getDireccion());
+		Clientes clienteExist = dao.findByNombreIgnoreCaseAndDireccionIgnoreCase(cliente.getNombre(), cliente.getDireccion());
 		
 		
-		if (clienteExist != null && direccionExist!=null) {
+		if (clienteExist != null) {
 	        throw new RuntimeException("El cliente con el nombre '" + cliente.getNombre() +"' y la dirección '"+ cliente.getDireccion() + "' ya existe.");
 	    }
 		return dao.save(cliente);
@@ -30,10 +29,11 @@ public class ClientesServImpl implements IClientesService {
 
 	@Override
 	public Clientes editar(Clientes cliente) {
-		Clientes aux = this.buscar(cliente.getIdCliente());
-		if(aux!=null)
-			return dao.save(cliente);
-		return null;
+		Clientes clienteExist = dao.findByNombreIgnoreCaseAndDireccionIgnoreCase(cliente.getNombre(),cliente.getDireccion());
+		
+		if(clienteExist!=null && clienteExist.getIdCliente() != cliente.getIdCliente())
+			 throw new RuntimeException("El cliente con el nombre '" + cliente.getNombre() +"' y la dirección '"+ cliente.getDireccion() + "' ya existe.");
+		return dao.save(cliente);
 	}
 
 	@Override

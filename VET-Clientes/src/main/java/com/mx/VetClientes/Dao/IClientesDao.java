@@ -8,7 +8,6 @@ public interface IClientesDao extends JpaRepository<Clientes, Integer> {
 
 	public Clientes findByIdCliente(int idCliente);
 	
-	public Clientes findByNombreIgnoreCase(String nombre);
+	public Clientes findByNombreIgnoreCaseAndDireccionIgnoreCase(String nombre, String direccion);
 	
-	public Clientes findByDireccionIgnoreCase(String direccion);
 }

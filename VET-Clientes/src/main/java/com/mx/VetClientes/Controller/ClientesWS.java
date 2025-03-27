@@ -49,14 +49,23 @@ public class ClientesWS {
 	
 	@PutMapping
 	public ResponseEntity<?> editar(@RequestBody Clientes cliente){
-		Clientes aux = service.buscar(cliente.getIdCliente());
-		if(aux!=null)
-			if(service.editar(cliente)!=null) {
-				return ResponseEntity.status(HttpStatus.OK).body(cliente);
-			} else {
-				return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
-				}
-		return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+		try {
+			Clientes aux = service.buscar(cliente.getIdCliente());
+			if(aux==null)
+				return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+			
+			service.editar(cliente);
+			return ResponseEntity.status(HttpStatus.OK).body(cliente);
+			
+		} catch(RuntimeException e) {
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+		}
+		
+		
+		
+		
+				
+		
 	}
 	
 	@DeleteMapping("/{idCliente}")

@@ -21,6 +21,7 @@ export class EditarClienteComponent implements OnInit {
 
   //VARIABLES Y ARREGLOS
   cliente: Clientes = new Clientes;
+  mensajeError: string='';
 
   //MÉTODOS
   buscarCliente(){ 
@@ -42,6 +43,7 @@ export class EditarClienteComponent implements OnInit {
 
   }
   editarCliente(){
+    this.mensajeError='';//Limpiar buffer
     this.service.editarCliente(this.cliente).subscribe({
       next: data=>{
         Swal.fire({
@@ -54,8 +56,9 @@ export class EditarClienteComponent implements OnInit {
         this.router.navigate(['listarClientes']);
 
       }, error: err=>{
+        this.mensajeError=`Ocurrió un error!<br><br>ERROR: ${err.error}`;
         Swal.fire({
-          text: "Ocurrió un error!",
+          html:this.mensajeError,
           icon: "error"
         });
       }

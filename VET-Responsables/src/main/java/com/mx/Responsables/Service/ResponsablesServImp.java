@@ -28,15 +28,23 @@ public class ResponsablesServImp implements IResponsablesServ{
 
 	@Override
 	public Responsables guardar(Responsables responsable) {
+		Responsables responsableExist = dao.findByNombreIgnoreCaseAndVeterinariaId(responsable.getNombre(), responsable.getVeterinariaId());
+	
+		
+		if(responsableExist!=null) {
+			throw new RuntimeException("El responsable con el nombre '" + responsable.getNombre() +"' ya existe en la veterinaria '"+ responsable.getVeterinariaId());
+		}
 		return dao.save(responsable);
 	}
 
 	@Override
 	public Responsables editar(Responsables responsable) {
-		Responsables aux = this.buscar(responsable.getIdResponsable());
-		if(aux!=null)
-			return dao.save(aux);
-		return null;
+		Responsables responsableExist = dao.findByNombreIgnoreCaseAndVeterinariaId(responsable.getNombre(), responsable.getVeterinariaId());
+
+		if(responsableExist!=null && responsableExist.getIdResponsable()!=responsable.getIdResponsable()) {
+			throw new RuntimeException("El responsable con el nombre '" + responsable.getNombre() +"' ya existe en la veterinaria '"+ responsable.getVeterinariaId());
+		}
+		return dao.save(responsable);
 	}
 
 	@Override

@@ -43,22 +43,32 @@ public class ResponsablesWS {
 	
 	@PostMapping
 	public ResponseEntity<?> guardar(@RequestBody Responsables responsable){
-		Responsables nuevoResp = service.guardar(responsable);
-		if(nuevoResp!=null)
+		System.out.println("El responsable es: " + responsable);
+		try {
+			Responsables nuevoResp = service.guardar(responsable);
 			return ResponseEntity.status(HttpStatus.OK).body(nuevoResp);
-		return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+		} catch(RuntimeException e) {
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+		}
+		
+			
+		
 	}
 	
 	@PutMapping
 	public ResponseEntity<?> editar(@RequestBody Responsables responsable){
-		Responsables aux = service.buscar(responsable.getIdResponsable());
-		if(aux!=null)
-			if(service.editar(responsable)!=null) {
-				return ResponseEntity.status(HttpStatus.OK).body(responsable);
-			} else {
-				return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
-			}
-		return ResponseEntity.status(HttpStatus.NOT_FOUND).build();	
+		
+		try {
+			Responsables aux = service.buscar(responsable.getIdResponsable());
+			if(aux==null)
+				return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+			
+			service.editar(responsable);
+			return ResponseEntity.status(HttpStatus.OK).body(responsable);
+				
+		} catch(RuntimeException e) {
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+		}
 	}
 	
 	@DeleteMapping("/{idResponsable}")

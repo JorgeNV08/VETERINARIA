@@ -22,6 +22,7 @@ export class EditarResponsablesComponent implements OnInit{
   
   //Variables
   responsable: Responsables = new Responsables;
+  mensajeError: string='';
 
   //Métodos
   buscarResponsable(){
@@ -42,6 +43,7 @@ export class EditarResponsablesComponent implements OnInit{
 
   }
   editarResponsable(){
+    this.mensajeError=''; //Limiamos el buffer
     this.service.editarResponsable(this.responsable).subscribe({
       next: data=>{
         Swal.fire({
@@ -53,8 +55,9 @@ export class EditarResponsablesComponent implements OnInit{
         });
         this.router.navigate(['listarResponsables']);
       }, error: err=>{
+        this.mensajeError=`Ocurrió un error!<br><br>ERROR: ${err.error}`;
         Swal.fire({
-          text: "Ocurrió un error!",
+          html: this.mensajeError,
           icon: "error"
         });
       }

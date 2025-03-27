@@ -22,9 +22,11 @@ export class GuardarMascotasComponent implements OnInit {
 
   //Variables y Arreglos
   mascota: Mascotas = new Mascotas;
+  mensajeError: string='';
 
   //Métodos
   guardarMascota(){
+    this.mensajeError=''; //Limpiamos el buffer
     this.service.guardarMascota(this.mascota).subscribe({
       next: data=>{
         Swal.fire({
@@ -37,10 +39,11 @@ export class GuardarMascotasComponent implements OnInit {
         this.router.navigate(['listarMascotas']);
       }, error: err=>{
         console.error(JSON.stringify(err));
+        this.mensajeError=`Ocurrió un error al guardar el la mascota<br><br>Error: ${err.error}`;
         Swal.fire({
           title: "ERROR!",
           icon: "error",
-          text: "Ocurrió un error al guardar el cliente ",
+          html: this.mensajeError,
           confirmButtonText: "Continuar"
         });
       }

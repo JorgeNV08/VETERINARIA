@@ -18,9 +18,11 @@ export class GuardarVeterinariaComponent {
 
   //Variables
   veterinaria: Veterinaria = new Veterinaria;
+  mensajeError: string='';
 
   //Métodos
   guardar(){
+    this.mensajeError=''; //Limpiar el Buffer
     this.service.guardarVeterinaria(this.veterinaria).subscribe({
       next: data=>{
         Swal.fire({
@@ -32,11 +34,12 @@ export class GuardarVeterinariaComponent {
         });
         this.router.navigate(['listarVeterinarias']);
       }, error: err=>{
+        this.mensajeError = `Ocurrió un error al guardar la Veterinaria<br><br>Error: ${err.error}`
         console.error(JSON.stringify(err));
         Swal.fire({
           title: "ERROR!",
           icon: "error",
-          text: "Ocurrió un error al guardar la Veterinaria " + this.veterinaria.nombre,
+          html: this.mensajeError,
           confirmButtonText: "Continuar"
         });
 

@@ -22,9 +22,11 @@ export class GuardarResponsablesComponent implements OnInit{
 
   //Variables
   responsable: Responsables = new Responsables;
+  mensajeError: string = '';
 
   //Metodos
   guardarResponsable(){
+    this.mensajeError=''; //Limpiar buffer
     this.service.guardarResponsable(this.responsable).subscribe({
       next: data=>{
         Swal.fire({
@@ -37,10 +39,11 @@ export class GuardarResponsablesComponent implements OnInit{
         this.router.navigate(['listarResponsables']);
       }, error: err=>{
         console.error(JSON.stringify(err));
+        this.mensajeError = `Ocurrió un error al guardar al responsable.<br><br>ERROR: ${err.error}`;
         Swal.fire({
           title: "ERROR!",
           icon: "error",
-          text: "Ocurrió un error al guardar el cliente ",
+          html: this.mensajeError,
           confirmButtonText: "Continuar"
         });
       }

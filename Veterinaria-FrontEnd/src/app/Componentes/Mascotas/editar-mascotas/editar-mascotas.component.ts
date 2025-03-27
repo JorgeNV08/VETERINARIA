@@ -22,6 +22,7 @@ export class EditarMascotasComponent implements OnInit {
 
   //Variables y Arreglos
   mascota: Mascotas = new Mascotas;
+  mensajeError: string='';
 
   //Métodos
   buscarMascota(){
@@ -43,6 +44,7 @@ export class EditarMascotasComponent implements OnInit {
   }
 
   editarMascota(){
+    this.mensajeError=''; //Limpiamos buffer
     this.service.editarMascota(this.mascota).subscribe({
       next: data=>{
         Swal.fire({
@@ -55,8 +57,9 @@ export class EditarMascotasComponent implements OnInit {
         this.router.navigate(['listarMascotas']);
 
       }, error: err=>{
+        this.mensajeError=`Ocurrió un error!<br><br>Error: ${err.error}`
         Swal.fire({
-          text: "Ocurrió un error!",
+          html: this.mensajeError,
           icon: "error"
         });
       }

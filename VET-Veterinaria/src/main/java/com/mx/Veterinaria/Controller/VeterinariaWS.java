@@ -47,22 +47,28 @@ public class VeterinariaWS {
 	
 	@PostMapping
 	public ResponseEntity<?> guardar(@RequestBody Veterinaria veterinaria){
-		Veterinaria nuevaVet = service.guardar(veterinaria);
-		if(nuevaVet!=null)
+		try {
+			Veterinaria nuevaVet = service.guardar(veterinaria);
 			return ResponseEntity.status(HttpStatus.OK).body(nuevaVet);
-		return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+		} catch(RuntimeException e) { 
+		
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+		}
 	}
 	
 	@PutMapping
 	public ResponseEntity<?> editar(@RequestBody Veterinaria veterinaria){
-		Veterinaria aux = service.buscar(veterinaria.getIdVeterinaria());
-		if(aux!=null)
-			if(service.editar(veterinaria)!=null) {
-				return ResponseEntity.status(HttpStatus.OK).body(veterinaria);
-			} else {
-				return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
-			}
-		return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+		try {
+			Veterinaria aux = service.buscar(veterinaria.getIdVeterinaria());
+			if(aux==null)
+				return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+			
+			service.editar(veterinaria);
+			return ResponseEntity.status(HttpStatus.OK).body(veterinaria);
+			
+		} catch(RuntimeException e) {
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+		}
 	}
 	
 	@DeleteMapping("/{idVeterinaria}")

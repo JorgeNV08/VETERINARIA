@@ -20,6 +20,7 @@ export class EditarVeterinariaComponent implements OnInit{
   }
 
   veterinaria: Veterinaria = new Veterinaria;
+  mensajeError: string ='';
 
   buscarVeterinaria(){
     const id = Number(sessionStorage.getItem('id'));
@@ -39,19 +40,27 @@ export class EditarVeterinariaComponent implements OnInit{
   }
 
   editar(){
-    this.service.editarVeterinaria(this.veterinaria).subscribe(
-      data=>{
+    this.mensajeError=''; //Limpiamos buffer
+    this.service.editarVeterinaria(this.veterinaria).subscribe({
+      next:data=>{
+          Swal.fire({
+            title: "OK!",
+            text: "Se editó corréctamente",
+            icon: "success",
+            timer: 2000,
+            showConfirmButton: false
+          });
+          this.router.navigate(['listarVeterinarias']);
+        },
+      error: err=>{
+        this.mensajeError=`Ocurrió un error!<br><br>ERROR: ${err.error}`;
         Swal.fire({
-          title: "OK!",
-          text: "Se editó corréctamente",
-          icon: "success",
-          timer: 2000,
-          showConfirmButton: false
+          html:this.mensajeError,
+          icon: "error"
         });
-        this.router.navigate(['listarVeterinarias']);
       }
 
-    );
+  });
   }
 
 

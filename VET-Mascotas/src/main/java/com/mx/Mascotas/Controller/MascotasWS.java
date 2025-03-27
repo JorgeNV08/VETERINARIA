@@ -43,22 +43,29 @@ public class MascotasWS {
 	
 	@PostMapping
 	public ResponseEntity<?> guardar(@RequestBody Mascotas mascota){
-		Mascotas nuevaMascota = service.guardar(mascota);
-		if(nuevaMascota!=null)
+		try {
+			Mascotas nuevaMascota = service.guardar(mascota);
 			return ResponseEntity.status(HttpStatus.OK).body(nuevaMascota);
-		return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+		} catch (RuntimeException e) {
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+		}
 	}
 	
 	@PutMapping
 	public ResponseEntity<?> editar(@RequestBody Mascotas mascota){
-		Mascotas aux = service.buscar(mascota.getIdMascota());
-		if(aux!=null)
-			if(service.editar(mascota)!=null) {
-				return ResponseEntity.status(HttpStatus.OK).body(mascota);
-			} else {
-				return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
-			}
-		return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+		try {
+			Mascotas aux = service.buscar(mascota.getIdMascota());
+			if(aux==null)
+				return ResponseEntity.status(HttpStatus.NOT_FOUND).build();	
+			
+			service.editar(mascota); 
+			return ResponseEntity.status(HttpStatus.OK).body(mascota);
+			
+		} catch(RuntimeException e) {
+			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
+			
+		}
+
 	}
 	
 	

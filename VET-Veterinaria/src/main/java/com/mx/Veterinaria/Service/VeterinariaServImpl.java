@@ -46,15 +46,21 @@ public class VeterinariaServImpl implements IVeterinariaServ {
 
 	@Override
 	public Veterinaria guardar(Veterinaria veterinaria) {
+		Veterinaria veterinariaExist= dao.findByNombreIgnoreCaseAndDireccionIgnoreCase(veterinaria.getNombre(), veterinaria.getDireccion());
+		
+		if(veterinariaExist!=null) {
+			throw new RuntimeException("La veterinaria con el nombre '" +veterinaria.getNombre()+ "' en '"+veterinaria.getDireccion()+"' ya existe.");
+		}
 		return dao.save(veterinaria);
 	}
 
 	@Override
 	public Veterinaria editar(Veterinaria veterinaria) {
-		Veterinaria aux = this.buscar(veterinaria.getIdVeterinaria());
-		if(aux!=null)
-			return dao.save(veterinaria);
-		return null;
+		Veterinaria veterinariaExist= dao.findByNombreIgnoreCaseAndDireccionIgnoreCase(veterinaria.getNombre(), veterinaria.getDireccion());
+		
+		if(veterinariaExist!=null && veterinariaExist.getIdVeterinaria() != veterinaria.getIdVeterinaria())
+			throw new RuntimeException("La veterinaria con el nombre '" +veterinaria.getNombre()+ "' en '"+veterinaria.getDireccion()+"' ya existe.");
+		return dao.save(veterinaria);
 	}
 
 	@Override
