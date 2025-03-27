@@ -23,14 +23,14 @@ public class VeterinariaServImpl implements IVeterinariaServ {
 	@Autowired
 	private IVeterinariaDao dao;
 	
-	@Autowired
+	/*@Autowired
 	private IClientesFeign clientesFC;
 	
 	@Autowired
 	private IMascotasFeign mascotasFC;
 	
 	@Autowired
-	private IResponsablesFeign responsablesFC;
+	private IResponsablesFeign responsablesFC;*/
 	
 	
 	//*************************SERVICIOS DE VETERINARIA
@@ -73,7 +73,7 @@ public class VeterinariaServImpl implements IVeterinariaServ {
 		return null;
 	}
 	
-	//*************************SERVICIOS DE CLIENTES
+	/*//*************************SERVICIOS DE CLIENTES
 	public List<Clientes> getClientes(Clientes cliente){
 		return clientesFC.listarClientes();
 	}
@@ -162,5 +162,5 @@ public class VeterinariaServImpl implements IVeterinariaServ {
 		}
 		return null;
 	}
-	
+	*/
 }

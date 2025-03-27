@@ -9,12 +9,27 @@ import org.springframework.stereotype.Service;
 
 import com.mx.Mascotas.Dao.IMascotasDao;
 import com.mx.Mascotas.Entity.Mascotas;
+import com.mx.Mascotas.FeignClients.IClientesFeign;
+import com.mx.Mascotas.FeignClients.IResponsablesFeign;
+import com.mx.Mascotas.FeignClients.IVeterinariaFeign;
+import com.mx.Mascotas.Models.Clientes;
+import com.mx.Mascotas.Models.Responsables;
+import com.mx.Mascotas.Models.Veterinaria;
 
 @Service
 public class MascotasServImpl implements IMascotasServ{
 
 	@Autowired
 	IMascotasDao dao;
+	
+	@Autowired
+	IClientesFeign clientesFC;
+	
+	@Autowired
+	IVeterinariaFeign veterinariaFC;
+	
+	@Autowired
+	IResponsablesFeign responsablesFC;
 	
 	@Override
 	public List<Mascotas> listar() {
@@ -31,6 +46,21 @@ public class MascotasServImpl implements IMascotasServ{
 		Mascotas mascotaExist= dao.findByNombreIgnoreCaseAndRazaIgnoreCaseAndClienteId(mascota.getNombre(), mascota.getRaza(), mascota.getClienteId());
 		if(mascotaExist!=null) 
 			throw new RuntimeException("La mascota '"+mascota.getNombre()+"' de raza '"+mascota.getRaza()+"' del cliente '"+mascota.getClienteId()+"' ya existe.");
+		
+		Clientes cliente = clientesFC.buscarCliente(mascota.getClienteId());
+		Responsables responsable = responsablesFC.buscarResponsable(mascota.getResponsableId());
+		Veterinaria veterinaria = veterinariaFC.buscarVeterinaria(mascota.getVeterinariaId());
+		
+		if(cliente == null)
+			throw new RuntimeException("No existe el cliente con id'" + mascota.getClienteId() + "' de la mascota");
+		
+		if(responsable == null)
+			throw new RuntimeException("No existe el responsable con id'" + mascota.getResponsableId() + "' de la mascota");
+		
+		if(veterinaria == null)
+			throw new RuntimeException("No existe la veterinaria con id'" + mascota.getVeterinariaId() + "' de la mascota");
+		
+		
 		return dao.save(mascota);
 	}
 

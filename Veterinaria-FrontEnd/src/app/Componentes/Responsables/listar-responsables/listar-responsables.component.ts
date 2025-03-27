@@ -14,7 +14,7 @@ import Swal from 'sweetalert2';
 export class ListarResponsablesComponent implements OnInit {
 
   ngOnInit(): void {
-    this.listarResponsables();
+    //this.listarResponsables();
     this.service.listarResponsablesConVeterinaria().subscribe(data=>{
       this.responsables = data;
     })

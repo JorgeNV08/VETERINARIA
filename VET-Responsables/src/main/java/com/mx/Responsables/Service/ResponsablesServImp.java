@@ -9,12 +9,18 @@ import org.springframework.stereotype.Service;
 
 import com.mx.Responsables.Dao.IResponsablesDao;
 import com.mx.Responsables.Entity.Responsables;
+import com.mx.Responsables.FeignClients.IVeterinariaFeign;
+import com.mx.Responsables.Models.Veterinaria;
 
 @Service
 public class ResponsablesServImp implements IResponsablesServ{
 	
 	@Autowired
 	IResponsablesDao dao;
+	
+	@Autowired
+	IVeterinariaFeign veterinariaFc;
+	
 
 	@Override
 	public List<Responsables> listar() {
@@ -34,6 +40,12 @@ public class ResponsablesServImp implements IResponsablesServ{
 		if(responsableExist!=null) {
 			throw new RuntimeException("El responsable con el nombre '" + responsable.getNombre() +"' ya existe en la veterinaria '"+ responsable.getVeterinariaId());
 		}
+		
+		Veterinaria veterinaria = veterinariaFc.buscarVeterinaria(responsable.getVeterinariaId());
+        if (veterinaria == null) {
+            throw new RuntimeException("No existe la veterinaria con id '" + responsable.getVeterinariaId() + "'");
+        }
+        
 		return dao.save(responsable);
 	}
 
@@ -44,6 +56,12 @@ public class ResponsablesServImp implements IResponsablesServ{
 		if(responsableExist!=null && responsableExist.getIdResponsable()!=responsable.getIdResponsable()) {
 			throw new RuntimeException("El responsable con el nombre '" + responsable.getNombre() +"' ya existe en la veterinaria '"+ responsable.getVeterinariaId());
 		}
+		
+		Veterinaria veterinaria = veterinariaFc.buscarVeterinaria(responsable.getVeterinariaId());
+        if (veterinaria == null) {
+            throw new RuntimeException("No existe la veterinaria con id '" + responsable.getVeterinariaId() + "'"); 
+        }
+        
 		return dao.save(responsable);
 	}
 

@@ -33,7 +33,7 @@ public class VeterinariaWS {
 	public ResponseEntity<?> listar(){
 		List<Veterinaria> veterinarias = service.listar();
 		if(veterinarias.isEmpty())
-			return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).build(); //NOT CONTENT
 		return ResponseEntity.status(HttpStatus.OK).body(veterinarias);
 	}
 	
@@ -83,7 +83,7 @@ public class VeterinariaWS {
 		return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
 	}
 	
-	// ------------------------------------------------------ C L I E N T E S 
+	/*// ------------------------------------------------------ C L I E N T E S 
 	@GetMapping("/Clientes") //http://localhost:8201/Veterinaria/Clientes
 	public ResponseEntity<?> listarClientes(){
 		List<Clientes> clientes = service.getClientes(null);
@@ -234,7 +234,7 @@ public class VeterinariaWS {
 	}
 	
 	
-	
+	*/
 	
 	
 	

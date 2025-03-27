@@ -15,7 +15,7 @@ export class ListarMascotasComponent implements OnInit{
 
   
   ngOnInit(): void {
-    this.listarMascotas();
+    //this.listarMascotas();
     this.service.listarMascotasConDatos().subscribe(data=>{
       this.mascotas = data;
     })
